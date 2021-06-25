@@ -16,8 +16,7 @@ namespace PulsacionBD
         PersonaService personaService;
         public FrmConsultaPersona()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            personaService = new PersonaService(connectionString);
+             personaService = new PersonaService(ConfigConnection.connectionString, ConfigConnection.ProviderName);
             InitializeComponent();
         }
 
@@ -35,6 +34,10 @@ namespace PulsacionBD
                 TxtTotalMujeres.Text = personaService.TotalizarTipo("F").Cuenta.ToString();
                 TxtTotalHombres.Text = personaService.TotalizarTipo("M").Cuenta.ToString();
 
+            }
+            else
+            {
+                MessageBox.Show("Debe Seleccionar una opción ", "Busqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
            
 

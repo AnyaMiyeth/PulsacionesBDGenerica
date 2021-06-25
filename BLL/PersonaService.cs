@@ -12,26 +12,23 @@ namespace BLL
     {
         private readonly ConnectionManager conexion;
         private readonly PersonaRepository repositorio;
-        public PersonaService(string connectionString)
+        public PersonaService(string connectionString, string Proveedor)
         {
-            conexion = new ConnectionManager(connectionString);
+            conexion = new ConnectionManager(connectionString, Proveedor);
             repositorio = new PersonaRepository(conexion);
         }
         public string Guardar(Persona persona)
         {
             try
             {
-                persona.CalcularPulsacion();
-                conexion.Open();
-                repositorio.Guardar(persona);
-                conexion.Close();
-                return $"Se guardaron los datos satisfactoriamente";
+               
+                return $"Se guardo la Persona Satisfactoriamente";
             }
             catch (Exception e)
             {
                 return $"Error de la Aplicacion: {e.Message}";
             }
-            finally { conexion.Close(); }
+            finally {  }
         }
         public ConsultaPersonaRespuesta ConsultarTodos()
         {

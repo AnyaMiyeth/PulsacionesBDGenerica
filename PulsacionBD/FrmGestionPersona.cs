@@ -19,8 +19,8 @@ namespace PulsacionBD
         public FrmGestionPersona()
         {
             InitializeComponent();
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            personaService = new PersonaService(connectionString);
+            //string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+           personaService = new PersonaService(ConfigConnection.connectionString, ConfigConnection.ProviderName);
         }
         private Persona MapearPersona()
         {

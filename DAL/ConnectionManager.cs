@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using System.Data.Common;
 namespace DAL
 {
     public class ConnectionManager
     {
-        internal SqlConnection _conexion;
-        public ConnectionManager(string connectionString)
+        internal DbConnection _conexion;
+        public ConnectionManager(string connectionString, string proveedor)
         {
-            _conexion = new SqlConnection(connectionString);
+            DbProviderFactory factoria = DbProviderFactories.GetFactory(proveedor);
+            _conexion = factoria.CreateConnection();
+               
+            _conexion.ConnectionString = connectionString;
+          
         }
         public void Open()
         {
